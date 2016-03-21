@@ -33,14 +33,15 @@ public class lab18avst
 		
 		studentArray.search(studentID);
 
-		int index = studentArray.search(studentID);
+		int Index = studentArray.search(studentID);
 
-		if (index == -1)
+		if (Index == -1)
 		    System.out.println("There is no student with an ID# of "+studentID+".\n");
 		else
 		{
-			studentArray.displayStudent(index);   // displays the information for the found student
-			studentArray.delete(index);           // remove the same student from the array
+			studentArray.displayStudent(Index);   // displays the information for the found student
+			studentArray.delete(Index);           // remove the same student from the array
+			studentArray.pause();
 			studentArray.display("STUDENTS SORTED IN ASCENDING ORDER BY ID# WITHOUT STUDENT# "+studentID);
 			studentArray.pause();
 		}
@@ -77,6 +78,7 @@ class List
 	private Person student[];	// stores array elements
 	private int capacity;		// actual array capacity
 	private int size;			// number of elements in the array
+	int index = 0;
 
 	public List(int c)
 	{
@@ -138,9 +140,14 @@ class List
 		dummy = input.nextLine();
 	}
 
-	public void displayStudent(int index)
+	public void displayStudent(int Index)
 	{
 		
+		System.out.println("Student Record for ID# " + student[Index].id);
+		System.out.println();
+		System.out.println("Name : " + student[Index].name);
+		System.out.println("Age : " + student[Index].age);
+		System.out.println("GPA : " + student[Index].gpa);
 		
 
 	}
@@ -217,29 +224,32 @@ class List
 	public int search(int studentID)
 	{
 
-		int index = -1;
 		
 		if(studentID == student[index].id){
+			
 			return index;
-		}else{
+			
+		}else if(studentID != student[index].id){
 			
 			index++;
 			search(studentID);
 			
-		}
+	    }else{
+	    	
+	    	index = -1;
+	    	
+	    }
 		
 		return index;
 		
 		
 	}
 
-	public void delete(int index)
+	public void delete(int Index)
 	{
 		// Precondition:  "index" stores the index of a student object that exists in the "student" array.
 		// Postcondition: The student object at index "index" is removed from the "student" array.
 		//                All other objects in the "student" array are unaffected.
-
-
 
 	}
 }
